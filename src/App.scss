@@ -8,9 +8,8 @@ body {
 }
 
 .trello-clone-container {
-    height            : 100vh;
-    display           : grid;
-    grid-template-rows: 40px 50px 1fr;
-    line-height       : 1.3em;
-    background-color  : $board-bg-color;
+    height          : 100vh;
+    overflow        : hidden;
+    line-height     : 1.3em;
+    background-color: $board-bg-color;
 }
