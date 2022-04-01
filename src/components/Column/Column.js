@@ -1,7 +1,7 @@
-import React from "react";
-import './Column.scss';
-import { Container, Draggable } from "react-smooth-dnd";
-import Card from 'components/Card/Card';
+import React from 'react'
+import './Column.scss'
+import { Container, Draggable } from 'react-smooth-dnd'
+import Card from 'components/Card/Card'
 import { mapOrder } from 'utilities/sorts'
 
 function Column(props) {

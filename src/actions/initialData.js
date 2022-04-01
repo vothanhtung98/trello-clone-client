@@ -15,14 +15,14 @@ export const initialData = {
                             boardId: 'board-1',
                             columnId: 'column-1',
                             title: 'Title of card 1',
-                            cover: "https://files.fullstack.edu.vn/f8-prod/courses/2.png"
+                            cover: 'https://files.fullstack.edu.vn/f8-prod/courses/2.png'
                         },
                         { id: 'card-2', boardId: 'board-1', columnId: 'column-1', title: 'Title of card 2', cover: null },
                         { id: 'card-3', boardId: 'board-1', columnId: 'column-1', title: 'Title of card 3', cover: null },
                         { id: 'card-4', boardId: 'board-1', columnId: 'column-1', title: 'Title of card 4', cover: null },
                         { id: 'card-5', boardId: 'board-1', columnId: 'column-1', title: 'Title of card 5', cover: null },
                         { id: 'card-6', boardId: 'board-1', columnId: 'column-1', title: 'Title of card 6', cover: null },
-                        { id: 'card-7', boardId: 'board-1', columnId: 'column-1', title: 'Title of card 7', cover: null },
+                        { id: 'card-7', boardId: 'board-1', columnId: 'column-1', title: 'Title of card 7', cover: null }
                     ]
                 },
                 {
@@ -44,10 +44,10 @@ export const initialData = {
                     cards: [
                         { id: 'card-11', boardId: 'board-1', columnId: 'column-1', title: 'Title of card 11', cover: null },
                         { id: 'card-12', boardId: 'board-1', columnId: 'column-1', title: 'Title of card 12', cover: null },
-                        { id: 'card-13', boardId: 'board-1', columnId: 'column-1', title: 'Title of card 13', cover: null },
+                        { id: 'card-13', boardId: 'board-1', columnId: 'column-1', title: 'Title of card 13', cover: null }
                     ]
-                },
+                }
             ]
         }
-    ],
+    ]
 }
