@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { isEmpty } from "lodash";
-import { Container, Draggable } from "react-smooth-dnd";
-import { Container as BootstrapContainer, Row, Col, Form, Button } from "react-bootstrap";
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { isEmpty } from 'lodash'
+import { Container, Draggable } from 'react-smooth-dnd'
+import { Container as BootstrapContainer, Row, Col, Form, Button } from 'react-bootstrap'
 
-import './BoardContent.scss';
+import './BoardContent.scss'
 
-import Column from 'components/Column/Column';
+import Column from 'components/Column/Column'
 import { mapOrder } from 'utilities/sorts'
 import { applyDrag } from 'utilities/dragDrop'
 
-import { initialData } from 'actions/initialData';
+import { initialData } from 'actions/initialData'
 
 function BoardContent() {
     const [board, setBoard] = useState({})
@@ -68,13 +68,6 @@ function BoardContent() {
         }
     }, [openNewColumnForm])
 
-    if (isEmpty(board)) {
-        return <div
-            className="not-found"
-            style={{ 'padding': '10px', 'color': 'white' }}
-        >Board not found!</div>
-    }
-
     const onColumnDrop = (dropResult) => {
         let newColumns = [...columns]
         newColumns = applyDrag(newColumns, dropResult)
@@ -102,6 +95,13 @@ function BoardContent() {
 
     const toggleOpenNewColumnForm = () => setOpenNewColumnForm(!openNewColumnForm)
 
+    if (isEmpty(board)) {
+        return <div
+            className="not-found"
+            style={{ 'padding': '10px', 'color': 'white' }}
+        >Board not found!</div>
+    }
+
     return (
         <div className="board-content">
             <Container
@@ -122,10 +122,10 @@ function BoardContent() {
                 ))}
             </Container>
 
-            <BootstrapContainer className="trello-container" onClick={toggleOpenNewColumnForm}>
+            <BootstrapContainer className="trello-container">
                 {!openNewColumnForm &&
                     <Row>
-                        <Col className="add-new-column">
+                        <Col className="add-new-column" onClick={toggleOpenNewColumnForm}>
                             <i className="fa fa-plus icon" /> Add another column
                         </Col>
                     </Row>
