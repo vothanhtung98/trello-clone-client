@@ -1,18 +1,13 @@
 @import './_setting.scss';
 
-$column-header-height: 36px;
-$column-footer-height: 36px;
+$column-header-height: 32px;
+$column-footer-height: 32px;
 
 $column-height : calc(#{$board-content-height} - #{$gap * 2});
 
 .column {
-    // flex   : 0 0 auto;
     width : 300px;
     height: $column-height;
-
-    // &:not(:first-child) {
-    //     margin-left: $gap;
-    // }
 
     margin-left: $gap;
 
@@ -22,14 +17,64 @@ $column-height : calc(#{$board-content-height} - #{$gap * 2});
     }
 
     header.column-drag-handle {
-        padding-left           : 15px;
-        height                 : $column-header-height;
-        line-height            : $column-header-height;
+        padding                : 6px 8px;
         font-size              : 20px;
         font-weight            : bold;
         border-top-left-radius : $column-border-radius;
         border-top-right-radius: $column-border-radius;
-        cursor                 : pointer
+        cursor                 : pointer;
+        display                : flex;
+
+        .column-title {
+            flex: 90%;
+        }
+
+        .column-dropdown-actions {
+            flex: 10%;
+
+            .dropdown-menu {
+                padding: 0;
+
+                a.dropdown-item {
+                    font-size  : 16px;
+                    padding    : 0rem 1rem;
+                    line-height: 36px;
+
+                    &:not(:last-child) {
+                        border-bottom: 1px solid darken($column-bg-color, 10);
+                    }
+                }
+            }
+
+
+            button.dropdown-btn {
+                &::after {
+                    content: "...";
+                    border : none;
+                }
+
+                &:hover {
+                    background-color: darken($column-bg-color, 10);
+                    border-color    : darken($column-bg-color, 10);
+                }
+
+                line-height     : 16px;
+                font-size       : 16px;
+                font-weight     : bold;
+                padding         : 4px 6px 6px;
+                letter-spacing  : 1px;
+                background-color: $column-bg-color;
+                border-color    : $column-bg-color;
+                color           : $app-main-text-color;
+            }
+        }
+
+        .trello-content-editable {
+            height     : $column-header-height;
+            line-height: $column-header-height;
+            min-height : 30px;
+            padding    : 6px 8px;
+        }
     }
 
     footer {
