@@ -111,7 +111,7 @@ function Column(props) {
                     </Dropdown>
                 </div>
             </header>
-            <div className="card-list">
+            <div className={openNewCardForm ? 'card-list new-card-form-open' : 'card-list'}>
                 <Container
                     groupName="columns"
                     onDrop={dropResult => onCardDrop(column.id, dropResult)}
