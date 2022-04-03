@@ -59,28 +59,10 @@
         input.input-enter-new-column {
             margin   : 4px 0;
             font-size: 16px;
-
-            &:focus {
-                border-color: $input-border-color;
-            }
         }
 
         .add-new-column-btn {
             font-size: 16px;
-        }
-    }
-
-    span.cancel-new-column {
-        margin-left: $gap;
-        cursor     : pointer;
-
-        i {
-            font-size: 18px;
-            color    : $alert-danger;
-
-            &:hover {
-                color: darken($alert-danger, 10);
-            }
         }
     }
 }
