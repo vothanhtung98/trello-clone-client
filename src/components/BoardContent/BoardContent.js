@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { isEmpty } from 'lodash'
 import { Container, Draggable } from 'react-smooth-dnd'
 import { Container as BootstrapContainer, Row, Col, Form, Button } from 'react-bootstrap'
@@ -15,13 +15,12 @@ function BoardContent() {
     const [board, setBoard] = useState({})
     const [columns, setColumns] = useState([])
     const [openNewColumnForm, setOpenNewColumnForm] = useState(false)
+    const toggleOpenNewColumnForm = () => setOpenNewColumnForm(!openNewColumnForm)
     const [newColumnTitle, setNewColumnTitle] = useState('')
+    const onNewColumnTitleChange = (e) => { setNewColumnTitle(e.target.value) }
 
     const newColumnInputRef = useRef(null)
 
-    const onNewColumnTitleChange = useCallback((e) => {
-        setNewColumnTitle(e.target.value)
-    }, [])
 
     const addNewColumn = () => {
         if (!newColumnTitle) {
@@ -116,8 +115,6 @@ function BoardContent() {
         }
     }
 
-    const toggleOpenNewColumnForm = () => setOpenNewColumnForm(!openNewColumnForm)
-
     if (isEmpty(board)) {
         return <div
             className="not-found"
@@ -140,7 +137,11 @@ function BoardContent() {
             >
                 {columns.map((column, index) => (
                     <Draggable key={index}>
-                        <Column column={column} onCardDrop={onCardDrop} onUpdateColumn={onUpdateColumn} />
+                        <Column
+                            column={column}
+                            onCardDrop={onCardDrop}
+                            onUpdateColumn={onUpdateColumn}
+                        />
                     </Draggable>
                 ))}
             </Container>
@@ -175,7 +176,7 @@ function BoardContent() {
                             >
                                 Add column
                             </Button>
-                            <span className="cancel-new-column" onClick={toggleOpenNewColumnForm}>
+                            <span className="cancel-icon" onClick={toggleOpenNewColumnForm}>
                                 <i className="fa fa-trash icon"></i>
                             </span>
                         </Col>

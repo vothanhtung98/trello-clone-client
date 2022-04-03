@@ -78,12 +78,12 @@ $column-height : calc(#{$board-content-height} - #{$gap * 2});
     }
 
     footer {
-        padding-left              : 10px;
-        height                    : $column-footer-height;
-        line-height               : $column-footer-height;
-        border-bottom-left-radius : $column-border-radius;
-        border-bottom-right-radius: $column-border-radius;
-        color                     : #888;
+        padding-left                 : 10px;
+        // height                    : $column-footer-height;
+        line-height                  : $column-footer-height;
+        border-bottom-left-radius    : $column-border-radius;
+        border-bottom-right-radius   : $column-border-radius;
+        color                        : #888;
 
         .footer-actions {
             margin-left: 5px;
@@ -93,6 +93,14 @@ $column-height : calc(#{$board-content-height} - #{$gap * 2});
                 color: $app-main-text-color
             }
 
+        }
+
+        .add-new-card-actions {
+
+            .add-new-card-btn {
+                font-size: 16px;
+                margin   : $gap 0;
+            }
         }
     }
 
@@ -130,6 +138,15 @@ $column-height : calc(#{$board-content-height} - #{$gap * 2});
             background-color: rgba(150, 150, 200, 0.1);
             border          : 1px dashed #abc;
             margin          : 5px;
+        }
+
+        .add-new-card-area {
+
+            .textarea-enter-new-card {
+                font-size : 16px;
+                min-height: 54px;
+                max-height: 162px;
+            }
         }
     }
 }
