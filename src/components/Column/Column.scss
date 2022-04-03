@@ -3,7 +3,7 @@
 $column-header-height: 32px;
 $column-footer-height: 32px;
 
-$column-height : calc(#{$board-content-height} - #{$gap * 2});
+$column-height : calc(#{$board-content-height} - #{$gap * 3});
 
 .column {
     width : 300px;
@@ -148,5 +148,9 @@ $column-height : calc(#{$board-content-height} - #{$gap * 2});
                 max-height: 162px;
             }
         }
+    }
+
+    .new-card-form-open {
+        max-height : calc(#{$column-height} - #{$column-header-height} - 58px);
     }
 }
