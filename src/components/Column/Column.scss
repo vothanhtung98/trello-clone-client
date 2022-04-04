@@ -6,8 +6,8 @@ $column-footer-height: 32px;
 $column-height : calc(#{$board-content-height} - #{$gap * 3});
 
 .column {
-    width : 300px;
-    height: $column-height;
+    width     : 300px;
+    max-height: $column-height;
 
     margin-left: $gap;
 
@@ -136,6 +136,7 @@ $column-height : calc(#{$board-content-height} - #{$gap * 3});
 
         .card-drop-preview {
             background-color: rgba(150, 150, 200, 0.1);
+            border-radius   : 4px;
             border          : 1px dashed #abc;
             margin          : 5px;
         }
