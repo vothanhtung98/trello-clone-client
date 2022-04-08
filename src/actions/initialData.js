@@ -1,3 +1,5 @@
+//Use for develope Front-End, no need when combine with api
+
 export const initialData = {
     boards: [
         {
