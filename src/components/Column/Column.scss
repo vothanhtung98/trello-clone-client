@@ -153,5 +153,9 @@ $column-height : calc(#{$board-content-height} - #{$gap * 3});
 
     .new-card-form-open {
         max-height : calc(#{$column-height} - #{$column-header-height} - 58px);
+
+        .smooth-dnd-container{
+            min-height: 0px;
+        }
     }
 }

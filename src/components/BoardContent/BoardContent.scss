@@ -65,4 +65,16 @@
             font-size: 16px;
         }
     }
+
+    // .column-drop-preview {
+    //     background-color: rgba(0, 0, 0, 0.2);
+    //     margin          : 0 0 0 $gap;
+    //     border          : none;
+    //     border-radius   : 4px;
+    // }
+
+    .column-drop-preview {
+        background-color: transparent;
+        border:none;
+    }
 }

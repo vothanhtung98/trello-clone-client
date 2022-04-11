@@ -27,13 +27,17 @@ import {
 function BoardContent() {
     const [board, setBoard] = useState({})
     const [columns, setColumns] = useState([])
+
     const [openNewColumnForm, setOpenNewColumnForm] = useState(false)
     const toggleOpenNewColumnForm = () => setOpenNewColumnForm(!openNewColumnForm)
+
     const [newColumnTitle, setNewColumnTitle] = useState('')
     const onNewColumnTitleChange = (e) => { setNewColumnTitle(e.target.value) }
 
+    // Get board's data
     useEffect(() => {
         const boardId = '624ee6452281054bcfad4e44'
+        // Call Api get full board
         fetchBoardDetails(boardId).then(board => {
             setBoard(board)
             // Sort columns according to columns order
@@ -42,7 +46,6 @@ function BoardContent() {
     }, [])
 
     const newColumnInputRef = useRef(null)
-
 
     const addNewColumn = () => {
         if (!newColumnTitle) {
@@ -55,20 +58,24 @@ function BoardContent() {
             title: newColumnTitle.trim()
         }
 
-        createNewColumn(newColumnToAdd).then(column => {
-            let newColumns = [...columns]
-            newColumns.push(column)
+        let newColumns = cloneDeep(columns)
+        newColumns.push(newColumnToAdd)
 
-            let newBoard = { ...board }
-            newBoard.columnOrder = newColumns.map(c => c._id)
+        let newBoard = cloneDeep(board)
+        newBoard.columnOrder = newColumns.map(c => c._id)
 
-            newBoard.columns = newColumns
+        newBoard.columns = newColumns
 
-            setColumns(newColumns)
-            setBoard(newBoard)
+        setColumns(newColumns)
+        setBoard(newBoard)
 
-            setNewColumnTitle('')
-            toggleOpenNewColumnForm()
+        setNewColumnTitle('')
+        toggleOpenNewColumnForm()
+
+        // Call Api createNewColumn
+        createNewColumn(newColumnToAdd).catch(() => {
+            setColumns(columns)
+            setBoard(board)
         })
     }
 
@@ -95,6 +102,7 @@ function BoardContent() {
         setBoard(newBoard)
     }
 
+    // Focus input when open add new column form
     useEffect(() => {
         if (newColumnInputRef && newColumnInputRef.current) {
             newColumnInputRef.current.focus()
@@ -102,21 +110,21 @@ function BoardContent() {
     }, [openNewColumnForm])
 
     const onColumnDrop = (dropResult) => {
-        let newColumns = cloneDeep(columns)
-        newColumns = applyDrag(newColumns, dropResult)
+        if (dropResult.removedIndex !== dropResult.addedIndex) {
+            let newColumns = cloneDeep(columns)
+            newColumns = applyDrag(newColumns, dropResult)
+            let newBoard = cloneDeep(board)
+            newBoard.columnOrder = newColumns.map(c => c._id)
+            newBoard.columns = newColumns
+            setColumns(newColumns)
+            setBoard(newBoard)
 
-        let newBoard = cloneDeep(board)
-        newBoard.columnOrder = newColumns.map(c => c._id)
-        newBoard.columns = newColumns
-
-        setColumns(newColumns)
-        setBoard(newBoard)
-
-        // Call Api update columnOrder in board
-        updateBoard(newBoard._id, newBoard).catch(() => {
-            setColumns(columns)
-            setBoard(board)
-        })
+            // Call Api update columnOrder in board
+            updateBoard(newBoard._id, newBoard).catch(() => {
+                setColumns(columns)
+                setBoard(board)
+            })
+        }
     }
 
     const onCardDrop = (columnId, dropResult) => {
@@ -129,8 +137,10 @@ function BoardContent() {
             setColumns(newColumns)
 
             if (dropResult.removedIndex !== null && dropResult.addedIndex !== null) {
-                // Move card in side it's column: Call Api update cardOrder in this column
-                updateColumn(currentColumn._id, currentColumn).catch(() => setColumns(columns))
+                if (dropResult.removedIndex !== dropResult.addedIndex) {
+                    // Move card in side it's column: Call Api update cardOrder in this column
+                    updateColumn(currentColumn._id, currentColumn).catch(() => setColumns(columns))
+                }
             } else {
                 // Move card between 2 columns: Call Api update cardOrder + columnId in 2 columns
                 updateColumn(currentColumn._id, currentColumn).catch(() => setColumns(columns))
@@ -151,7 +161,7 @@ function BoardContent() {
         return <div
             className="not-found"
             style={{ 'padding': '10px', 'color': 'white' }}
-        >Board not found!</div>
+        >Loading...</div>
     }
 
     return (

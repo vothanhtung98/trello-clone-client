@@ -16,14 +16,13 @@ function Column(props) {
     const cards = mapOrder(column.cards, column.cardOrder, '_id')
 
     const [showConfirmModal, setShowConfirmModal] = useState(false)
-
     const toggleShowConfirmModal = () => setShowConfirmModal(!showConfirmModal)
-
-    const [columnTitle, setColumnTitle] = useState('')
-    const handleColumnTitleChange = (e) => setColumnTitle(e.target.value)
 
     const [openNewCardForm, setOpenNewCardForm] = useState(false)
     const toggleOpenNewCardForm = () => setOpenNewCardForm(!openNewCardForm)
+
+    const [columnTitle, setColumnTitle] = useState('')
+    const handleColumnTitleChange = (e) => setColumnTitle(e.target.value)
 
     const [newCardTitle, setNewCardTitle] = useState('')
     const onNewCardTitleChange = (e) => { setNewCardTitle(e.target.value) }
@@ -84,15 +83,16 @@ function Column(props) {
             title: newCardTitle.trim()
         }
 
-        createNewCard(newCardToAdd).then(card => {
-            let newColumn = cloneDeep(column)
-            newColumn.cards.push(card)
-            newColumn.cardOrder.push(card._id)
+        let newColumn = cloneDeep(column)
+        newColumn.cards.push(newCardToAdd)
+        newColumn.cardOrder.push(newCardToAdd._id)
 
-            onUpdateColumnState(newColumn)
-            setNewCardTitle('')
-            toggleOpenNewCardForm()
-        })
+        onUpdateColumnState(newColumn)
+        setNewCardTitle('')
+        toggleOpenNewCardForm()
+
+        // Call Api create new card
+        createNewCard(newCardToAdd)
     }
 
     return (
