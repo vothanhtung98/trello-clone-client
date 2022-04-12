@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "trello-clone-web-bbf04"
+  },
+  "targets": {
+    "trello-clone-web-bbf04": {
+      "hosting": {
+        "myapp": [
+          "my-trello-vothanhtung"
+        ],
+        "oldapp": [
+          "trello-clone-web-bbf04"
+        ]
+      }
+    }
   }
 }
