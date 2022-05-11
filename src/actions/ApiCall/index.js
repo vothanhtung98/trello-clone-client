@@ -16,7 +16,7 @@ export const createNewColumn = async (data) => {
     return request.data
 }
 
-// Update column, delete when update _destroy
+// Update column, soft delete when update _destroy field
 export const updateColumn = async (id, data) => {
     const request = await axios.put(`${API_ROOT}/v1/columns/${id}`, data)
     return request.data
@@ -27,7 +27,7 @@ export const createNewCard = async (data) => {
     return request.data
 }
 
-// Update column, delete when update _destroy
+// Update card, soft delete when update _destroy field
 export const updateCard = async (id, data) => {
     const request = await axios.put(`${API_ROOT}/v1/cards/${id}`, data)
     return request.data

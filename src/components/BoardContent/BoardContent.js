@@ -192,7 +192,7 @@ function BoardContent() {
                 {!openNewColumnForm &&
                     <Row>
                         <Col className="add-new-column" onClick={toggleOpenNewColumnForm}>
-                            <i className="fa fa-plus icon" /> Add another column
+                            <i className="fa fa-plus icon" /> Add another list
                         </Col>
                     </Row>
                 }

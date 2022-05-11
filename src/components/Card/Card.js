@@ -3,6 +3,7 @@ import './Card.scss'
 
 function Card(props) {
     const { card } = props
+
     return (
         <div className="card-item">
             {card.cover &&

@@ -115,12 +115,9 @@ function Column(props) {
                 <div className="column-dropdown-actions">
                     <Dropdown>
                         <Dropdown.Toggle size="sm" id="dropdown-basic" className="dropdown-btn" />
-
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={toggleOpenNewCardForm}>Add Card...</Dropdown.Item>
                             <Dropdown.Item onClick={toggleShowConfirmModal}>Remove Column...</Dropdown.Item>
-                            <Dropdown.Item>Move All Cards (beta)...</Dropdown.Item>
-                            <Dropdown.Item>Archive All Cards (beta)...</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
@@ -179,7 +176,7 @@ function Column(props) {
                 }
                 {!openNewCardForm &&
                     <div className="footer-actions" onClick={toggleOpenNewCardForm}>
-                        <i className="fa fa-plus icon" /> Add another card
+                        <i className="fa fa-plus icon" /> Add a card
                     </div>
                 }
             </footer>
