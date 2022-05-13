@@ -1,7 +1,7 @@
 import React from 'react'
 import './AppBar.scss'
 import { Container as BootstrapContainer, Row, Col, InputGroup, FormControl } from 'react-bootstrap'
-import myavatar from '../../asset/images/avatar.jpg'
+import myavatar from 'assets/images/avatars/avatar.jpg'
 
 function AppBar() {
     return (

@@ -83,16 +83,29 @@ function Column(props) {
             title: newCardTitle.trim()
         }
 
-        let newColumn = cloneDeep(column)
-        newColumn.cards.push(newCardToAdd)
-        newColumn.cardOrder.push(newCardToAdd._id)
-
-        onUpdateColumnState(newColumn)
-        setNewCardTitle('')
-        toggleOpenNewCardForm()
-
         // Call Api create new card
         createNewCard(newCardToAdd)
+            .then((card) => {
+                let newColumn = cloneDeep(column)
+                newColumn.cards.push(card)
+                newColumn.cardOrder.push(newCardToAdd._id)
+
+                onUpdateColumnState(newColumn)
+                setNewCardTitle('')
+                toggleOpenNewCardForm()
+            })
+    }
+
+    const onUpdateCardState = (newCardToUpdate) => {
+        if (newCardToUpdate._destroy) {
+            column.cards = column.cards.filter(card => card._id !== newCardToUpdate._id)
+        } else {
+            column.cards = column.cards.map(card => {
+                if (card._id === newCardToUpdate._id) { card = newCardToUpdate }
+                return card
+            })
+        }
+        onUpdateColumnState(column)
     }
 
     return (
@@ -116,8 +129,8 @@ function Column(props) {
                     <Dropdown>
                         <Dropdown.Toggle size="sm" id="dropdown-basic" className="dropdown-btn" />
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={toggleOpenNewCardForm}>Add Card...</Dropdown.Item>
-                            <Dropdown.Item onClick={toggleShowConfirmModal}>Remove Column...</Dropdown.Item>
+                            <Dropdown.Item onClick={toggleOpenNewCardForm}>Add a card...</Dropdown.Item>
+                            <Dropdown.Item onClick={toggleShowConfirmModal}>Remove this list</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
@@ -138,7 +151,11 @@ function Column(props) {
                 >
                     {cards.map((card, index) => (
                         <Draggable key={index}>
-                            <Card card={card} />
+                            <Card
+                                card={card}
+                                columnTitle={column.title}
+                                onUpdateCardState={onUpdateCardState}
+                            />
                         </Draggable>
                     ))}
                 </Container>
@@ -184,7 +201,7 @@ function Column(props) {
             <ConfirmModal
                 show={showConfirmModal}
                 onAction={onConfirmModalAction}
-                title="Remove Column"
+                title="Remove List"
                 content={`Are you sure? All cards in <strong>${column.title}</strong> will be removed!`}
             />
         </div>

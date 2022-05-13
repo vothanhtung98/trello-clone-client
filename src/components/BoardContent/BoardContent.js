@@ -58,25 +58,27 @@ function BoardContent() {
             title: newColumnTitle.trim()
         }
 
-        let newColumns = cloneDeep(columns)
-        newColumns.push(newColumnToAdd)
-
-        let newBoard = cloneDeep(board)
-        newBoard.columnOrder = newColumns.map(c => c._id)
-
-        newBoard.columns = newColumns
-
-        setColumns(newColumns)
-        setBoard(newBoard)
-
-        setNewColumnTitle('')
-        toggleOpenNewColumnForm()
-
         // Call Api createNewColumn
-        createNewColumn(newColumnToAdd).catch(() => {
-            setColumns(columns)
-            setBoard(board)
-        })
+        createNewColumn(newColumnToAdd)
+            .then((column) => {
+                let newColumns = cloneDeep(columns)
+                newColumns.push(column)
+
+                let newBoard = cloneDeep(board)
+                newBoard.columnOrder = newColumns.map(c => c._id)
+
+                newBoard.columns = newColumns
+
+                setColumns(newColumns)
+                setBoard(newBoard)
+
+                setNewColumnTitle('')
+                toggleOpenNewColumnForm()
+            })
+            .catch(() => {
+                setColumns(columns)
+                setBoard(board)
+            })
     }
 
     const onUpdateColumnState = (newColumnToUpdate) => {
@@ -160,8 +162,8 @@ function BoardContent() {
     if (isEmpty(board)) {
         return <div
             className="not-found"
-            style={{ 'padding': '10px', 'color': 'white' }}
-        >Loading...</div>
+            style={{ 'padding': '10px', 'color': 'white', fontSize: '20px' }}
+        >Fisrt load will take time, please wait ...</div>
     }
 
     return (

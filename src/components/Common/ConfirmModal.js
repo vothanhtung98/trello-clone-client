@@ -4,10 +4,11 @@ import HTMLReactParser from 'html-react-parser'
 import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from 'utilities/constants'
 
 function ConfirmModal(props) {
-    const { title, content, show, onAction } = props
+    const { title, content, show, onAction, size } = props
     return (
         <Modal
             show={show}
+            size={size}
             onHide={() => onAction(MODAL_ACTION_CLOSE)}
             backdrop="static"
             keyboard={false}

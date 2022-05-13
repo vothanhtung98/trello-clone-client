@@ -4,18 +4,280 @@ $card-border-radius : 4px;
 
 .card-item {
     background-color: white;
-    padding         : $gap;
+    padding         : 5px $gap;
     border-radius   : $card-border-radius;
     box-shadow      : 0 1px 1px rgba(0, 0, 0, 0.1);
     cursor          : pointer;
+    display         : flex;
+    align-items     : center;
+    justify-content : space-between;
+    flex-wrap       : wrap;
 
     margin-bottom: $gap;
 
-    img.card-cover {
-        display                : block;
-        width                  : calc(100% + 2*#{$gap});
-        margin                 : -$gap 0 $gap (-$gap);
-        border-top-left-radius : $card-border-radius;
-        border-top-right-radius: $card-border-radius;
+    .card-cover {
+        img.cover-img {
+            display                : block;
+            width                  : calc(100% + 2*#{$gap});
+            margin                 : -5px 0 $gap (-$gap);
+            border-top-left-radius : $card-border-radius;
+            border-top-right-radius: $card-border-radius;
+        }
+    }
+
+    .card-title {
+        margin-bottom: 0;
+    }
+
+    .card-view {
+        .view-btn {
+            &:hover {
+                background-color: darken(white, 10);
+                border-color    : darken(white, 10);
+                opacity         : 1;
+            }
+
+            line-height      : 16px;
+            font-size        : 16px;
+            font-weight      : bold;
+            padding          : 5px 6px 7px 7px;
+            letter-spacing   : 1px;
+            background-color : white;
+            border-color     : white;
+            color            : $app-main-text-color;
+            opacity          : 0.8;
+        }
+    }
+}
+
+// .modal-content {
+//     width: 600px;
+// }
+
+.modal-view-head {
+    flex-direction: column;
+    align-items   : flex-end;
+    min-height    : 120px;
+    padding       : 15px;
+
+    .btn-close {
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .dropdown-toggle {
+        background-color: white !important;
+        border-color    : white !important;
+        color           : $app-main-text-color !important;
+    }
+
+    button.dropdown-btn {
+        &::after {
+            border: none;
+        }
+
+        &:hover {
+            background-color: lighten(white, 10);
+            border-color    : lighten(white, 10);
+            opacity         : 1;
+        }
+
+        line-height      : 16px;
+        font-size        : 16px;
+        font-weight      : bold;
+        padding          : 5px 1px 7px 7px;
+        letter-spacing   : 1px;
+        background-color : white;
+        border-color     : white;
+        color            : $app-main-text-color;
+        opacity          : 0.8;
+    }
+
+    .dropdown-menu {
+        .dropdown-header {
+            text-align: center;
+        }
+
+        .image-container {
+            display        : flex;
+            flex-wrap      : wrap;
+            justify-content: center;
+            width          : 450px;
+
+            .dropdown-item {
+                width        : 50%;
+                padding      : 5px;
+                border-radius: $card-border-radius;
+
+                &:hover {
+                    background-color: darken(aliceblue, 20);
+                }
+
+                img {
+                    width : 100%;
+                    height: 130px;
+                }
+            }
+
+            .image-remover {
+                width     : 50%;
+                text-align: center;
+                margin-top: 5px;
+                font-size : 20px;
+
+                .icon {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}
+
+.modal-view-body {
+    padding: 15px 20px;
+
+    .card-view-head {
+        font-size    : 16px;
+        display      : flex;
+        margin-bottom: 12px;
+
+        .head-icon {
+            margin-top  : 8px;
+            margin-right: 5px;
+            width       : 20px;
+            text-align  : center;
+        }
+
+        .head-details {
+            flex: 1;
+
+            .card-view-title {
+                font-size  : 24px;
+                font-weight: bold;
+
+                .trello-content-editable {
+                    padding         : 0;
+                    min-height      : 0;
+                    background-color: inherit;
+                    border          : none;
+                    font-size       : inherit;
+                    font-weight     : inherit;
+                    cursor          : pointer;
+
+                    &:focus {
+                        background-color: white;
+                        box-shadow      : 0 0 0 2px rgba(13, 110, 253, 0.25);
+                    }
+                }
+            }
+        }
+    }
+
+    .card-view-body {
+        display      : flex;
+        font-size    : 16px;
+        margin-bottom: 12px;
+
+        .body-icon {
+            width       : 20px;
+            margin-right: 5px;
+            text-align  : center;
+        }
+
+        .body-details {
+            flex        : 1;
+            margin-right: 20px;
+
+            .card-view-description {
+                font-size    : 20px;
+                margin-bottom: 5px;
+            }
+
+            .description-edit-icon {
+                margin-left: 10px;
+                font-size  : 14px;
+                opacity    : 0.8;
+                cursor     : pointer;
+
+                &:hover {
+                    opacity: 1
+                }
+            }
+        }
+
+        .add-description-icon {
+            cursor : pointer;
+            opacity: 0.8;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        .add-description-actions {
+            .add-description-btn {
+                font-size: 16px;
+                margin   : $gap 0;
+            }
+
+            span.cancel-icon {
+                margin-left: $gap;
+                cursor     : pointer;
+
+                i {
+                    font-size: 18px;
+                    color    : $alert-danger;
+
+                    &:hover {
+                        color: darken($alert-danger, 10);
+                    }
+                }
+            }
+        }
+
+        .add-description-area {
+            .textarea-enter-description {
+                font-size : 16px;
+                min-height: 54px;
+                max-height: 162px;
+
+                &:focus {
+                    background-color: white;
+                    box-shadow      : 0 0 0 2px rgba(13, 110, 253, 0.25);
+                }
+            }
+        }
+    }
+
+    .card-view-footer {
+        display        : flex;
+        justify-content: flex-end;
+
+        .del-card-btn {
+            &:focus {
+                box-shadow: none;
+            }
+
+            &:hover {
+                background-color: darken(white, 10);
+                border-color    : darken(white, 10);
+                opacity         : 1;
+            }
+
+            line-height      : 16px;
+            font-size        : 16px;
+            font-weight      : bold;
+            padding          : 5px 6px 7px 7px;
+            letter-spacing   : 1px;
+            background-color : white;
+            border-color     : white;
+            color            : $app-main-text-color;
+            opacity          : 0.8;
+
+            .icon {
+                margin-right: 5px;
+            }
+        }
     }
 }
