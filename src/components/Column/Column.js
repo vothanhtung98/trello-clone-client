@@ -88,7 +88,7 @@ function Column(props) {
             .then((card) => {
                 let newColumn = cloneDeep(column)
                 newColumn.cards.push(card)
-                newColumn.cardOrder.push(newCardToAdd._id)
+                newColumn.cardOrder.push(card._id)
 
                 onUpdateColumnState(newColumn)
                 setNewCardTitle('')
@@ -97,15 +97,17 @@ function Column(props) {
     }
 
     const onUpdateCardState = (newCardToUpdate) => {
+        let newColumn = cloneDeep(column)
         if (newCardToUpdate._destroy) {
-            column.cards = column.cards.filter(card => card._id !== newCardToUpdate._id)
+            newColumn.cards = newColumn.cards.filter(card => card._id !== newCardToUpdate._id)
+            newColumn.cardOrder = newColumn.cardsOrder.filter(card => card.id !== newCardToUpdate._id)
         } else {
-            column.cards = column.cards.map(card => {
+            newColumn.cards = newColumn.cards.map(card => {
                 if (card._id === newCardToUpdate._id) { card = newCardToUpdate }
                 return card
             })
         }
-        onUpdateColumnState(column)
+        onUpdateColumnState(newColumn)
     }
 
     return (

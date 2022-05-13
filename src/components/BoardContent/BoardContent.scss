@@ -62,7 +62,13 @@
         }
 
         .add-new-column-btn {
-            font-size: 16px;
+            background-color: $board-bg-color;
+            border          : none;
+            font-size       : 16px;
+
+            &:hover {
+                background-color: darken($board-bg-color, 5);
+            }
         }
     }
 
@@ -75,6 +81,6 @@
 
     .column-drop-preview {
         background-color: transparent;
-        border:none;
+        border          : none;
     }
 }

@@ -95,8 +95,14 @@ $column-height : calc(#{$board-content-height} - #{$gap * 3});
 
         .add-new-card-actions {
             .add-new-card-btn {
-                font-size: 16px;
-                margin   : $gap 0;
+                background-color: $board-bg-color;
+                border          : none;
+                font-size       : 16px;
+                margin          : $gap 0;
+
+                &:hover {
+                    background-color: darken($board-bg-color, 5);
+                }
             }
         }
     }

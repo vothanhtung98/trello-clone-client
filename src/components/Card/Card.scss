@@ -191,7 +191,7 @@ $card-border-radius : 4px;
 
             .card-view-description {
                 font-size    : 20px;
-                margin-bottom: 5px;
+                margin-bottom: 10px;
             }
 
             .description-edit-icon {
@@ -217,8 +217,14 @@ $card-border-radius : 4px;
 
         .add-description-actions {
             .add-description-btn {
-                font-size: 16px;
-                margin   : $gap 0;
+                background-color: $board-bg-color;
+                border          : none;
+                font-size       : 16px;
+                margin          : $gap 0;
+
+                &:hover {
+                    background-color: darken($board-bg-color, 5);
+                }
             }
 
             span.cancel-icon {

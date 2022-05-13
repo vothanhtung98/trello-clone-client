@@ -153,7 +153,6 @@ function BoardContent() {
 
                     // Call Api update columnId of card
                     updateCard(currentCard._id, currentCard)
-                    // .catch(()=>)
                 }
             }
         }
@@ -213,12 +212,12 @@ function BoardContent() {
                                 onKeyDown={e => (e.key === 'Enter') && addNewColumn()}
                             />
                             <Button
-                                variant="success"
+                                variant="primary"
                                 size="sm"
                                 className="add-new-column-btn"
                                 onClick={addNewColumn}
                             >
-                                Add column
+                                Add list
                             </Button>
                             <span className="cancel-icon" onClick={toggleOpenNewColumnForm}>
                                 <i className="fa fa-trash icon"></i>
