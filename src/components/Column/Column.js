@@ -100,7 +100,7 @@ function Column(props) {
         let newColumn = cloneDeep(column)
         if (newCardToUpdate._destroy) {
             newColumn.cards = newColumn.cards.filter(card => card._id !== newCardToUpdate._id)
-            newColumn.cardOrder = newColumn.cardsOrder.filter(card => card.id !== newCardToUpdate._id)
+            newColumn.cardOrder = newColumn.cardOrder.filter(card => card._id !== newCardToUpdate._id)
         } else {
             newColumn.cards = newColumn.cards.map(card => {
                 if (card._id === newCardToUpdate._id) { card = newCardToUpdate }
