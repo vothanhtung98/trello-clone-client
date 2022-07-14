@@ -29,10 +29,10 @@ $appbar-bg-color : #042c64;
                     margin-left: 4px;
                 }
 
-                &:hover {
-                    cursor          : pointer;
-                    background-color: rgba(255, 255, 255, 0.4)
-                }
+                // &:hover {
+                //     // cursor          : pointer;
+                //     background-color: rgba(255, 255, 255, 0.4)
+                // }
 
                 &.home {
                     i {
@@ -92,9 +92,9 @@ $appbar-bg-color : #042c64;
                 text-decoration: none;
                 color          : inherit;
 
-                &:hover {
-                    color: lighten(aliceblue, 10)
-                }
+                // &:hover {
+                //     color: lighten(aliceblue, 10)
+                // }
 
                 img.top-logo {
                     width: 30px;
@@ -126,10 +126,10 @@ $appbar-bg-color : #042c64;
                     margin-left: 4px;
                 }
 
-                &:hover {
-                    cursor          : pointer;
-                    background-color: rgba(255, 255, 255, 0.4);
-                }
+                // &:hover {
+                //     cursor          : pointer;
+                //     background-color: rgba(255, 255, 255, 0.4);
+                // }
 
                 &.user-avatar {
                     padding         : 0;
@@ -141,9 +141,9 @@ $appbar-bg-color : #042c64;
                         border-radius: 50%;
                         object-fit   : cover;
 
-                        &:hover {
-                            filter: brightness(120%)
-                        }
+                        // &:hover {
+                        //     filter: brightness(120%)
+                        // }
                     }
                 }
             }
